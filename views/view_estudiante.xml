@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <!-- Vista de Lista de Estudiantes -->
+        <record id="view_escuela_estudiantes_tree" model="ir.ui.view">
+            <field name="name">escuela.estudiantes.tree</field>
+            <field name="model">escuela.estudiante</field>
+            <field name="arch" type="xml">
+                <list string="Estudiantes">
+                    <field name="nombre"/>
+                    <field name="apellidos"/>
+                    <field name="edad"/>
+                    <field name="correo"/>
+                    <field name="telefono"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista de Formulario de Estudiantes -->
+        <record id="view_escuela_estudiantes_form" model="ir.ui.view">
+            <field name="name">escuela.estudiantes.form</field>
+            <field name="model">escuela.estudiante</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de Estudiantes">
+                    <sheet>
+                        <group name="General Information">
+                            <field name="nombre" required="1"/>
+                            <field name="apellidos" required="1"/>
+                            <field name="edad" required="1"/>
+                            <field name="correo" required="1"/>
+                            <field name="telefono"/>
+                            <field name="grupo_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vista Kanban de Estudiantes -->
+        <record id="view_escuela_estudiantes_kanban" model="ir.ui.view">
+            <field name="name">escuela.estudiantes.kanban</field>
+            <field name="model">escuela.estudiante</field>
+            <field name="arch" type="xml">
+                <kanban string="Estudiantes">
+                    <field name="nombre"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record">
+                                <div class="o_kanban_details">
+                                    <strong><field name="nombre"/></strong><br/>
+                                    <field name="apellidos"/><br/>
+                                    <field name="edad"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Definición del Informe -->
+        <report 
+            id="report_grupo_informe"
+            model="escuela.grupo"
+            string="Informe de Grupos"
+            report_type="qweb-pdf"
+            name="escuela.report_grupo"
+            file="escuela.report_grupo"
+            print_report_name="'Informe_Grupo_' + object.descripcion_grupo"/>
+
+        <!-- Plantilla Qweb del Informe -->
+        <template id="report_grupo">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <h2>Informe del Grupo: <t t-esc="doc.descripcion_grupo"/></h2>
+                            <p><strong>Módulo Profesional:</strong> <t t-esc="doc.modulo_profesional"/></p>
+                            <p><strong>Curso:</strong> <t t-esc="doc.curso"/></p>
+                            <br/>
+                            <h3>Estudiantes Matriculados:</h3>
+                            <ul>
+                                <t t-foreach="doc.estudiante_ids" t-as="estudiante">
+                                    <li><t t-esc="estudiante.name"/></li>
+                                </t>
+                            </ul>
+                            <br/>
+                            <h3>Asignaturas:</h3>
+                            <ul>
+                                <t t-foreach="doc.asignatura_ids" t-as="asignatura">
+                                    <li><t t-esc="asignatura.nombre_asignatura"/> (<t t-esc="asignatura.numero_horas"/> horas)</li>
+                                </t>
+                            </ul>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

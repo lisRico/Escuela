@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <!-- Vista de Lista de Grupos -->
+        <record id="view_escuela_grupos_tree" model="ir.ui.view">
+            <field name="name">escuela.grupos.tree</field>
+            <field name="model">escuela.grupo</field>
+            <field name="arch" type="xml">
+                <list string="Grupos">
+                    <field name="descripcion_grupo"/>
+                    <field name="modulo_profesional"/>
+                    <field name="anno_academico"/>
+                    <field name="curso"/>
+                    <field name="estudiante_ids"/>
+                    <field name="asignatura_ids"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista de Formulario de Grupos -->
+        <record id="view_escuela_grupos_form" model="ir.ui.view">
+            <field name="name">escuela.grupos.form</field>
+            <field name="model">escuela.grupo</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de Grupos">
+                    <sheet>
+                        <group name="General Information">
+                            <field name="descripcion_grupo" required="1"/>
+                            <field name="modulo_profesional" required="1"/>
+                            <field name="anno_academico"/>
+                            <field name="curso" required="1"/>
+                            <field name="estudiante_ids"/>
+                            <field name="asignatura_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vista Kanban de Grupos -->
+        <record id="view_escuela_grupos_kanban" model="ir.ui.view">
+            <field name="name">escuela.grupos.kanban</field>
+            <field name="model">escuela.grupo</field>
+            <field name="arch" type="xml">
+                <kanban string="Grupos">
+                    <field name="descripcion_grupo"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record">
+                                <div class="o_kanban_details">
+                                    <strong><field name="descripcion_grupo"/></strong><br/>
+                                    <field name="modulo_profesional"/><br/>
+                                    <field name="curso"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</odoo>
