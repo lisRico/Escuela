@@ -1,42 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <!-- Definición del Informe -->
+        <!-- Definición del reporte -->
         <report 
-            id="report_grupo_informe"
+            id="report_grupo_estudiantes_asignaturas"
             model="escuela.grupo"
-            string="Informe de Grupos"
+            string="Informe de Grupo"
             report_type="qweb-pdf"
-            name="escuela.report_grupo"
-            file="escuela.report_grupo"
-            print_report_name="'Informe_Grupo_' + object.descripcion_grupo"/>
+            name="escuela.report_grupo_estudiantes_asignaturas"
+            file="escuela.report_grupo_estudiantes_asignaturas"
+            attachment_use="False"
+        />
 
-        <!-- Plantilla Qweb del Informe -->
-        <template id="report_grupo">
-            <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="doc">
-                    <t t-call="web.basic_layout">
-                        <div class="page">
-                            <h2>Informe del Grupo: <t t-esc="doc.descripcion_grupo"/></h2>
-                            <p><strong>Módulo Profesional:</strong> <t t-esc="doc.modulo_profesional"/></p>
-                            <p><strong>Curso:</strong> <t t-esc="doc.curso"/></p>
-                            <br/>
-                            <h3>Estudiantes Matriculados:</h3>
-                            <ul>
-                                <t t-foreach="doc.estudiante_ids" t-as="estudiante">
-                                    <li><t t-esc="estudiante.name"/></li>
-                                </t>
-                            </ul>
-                            <br/>
-                            <h3>Asignaturas:</h3>
-                            <ul>
-                                <t t-foreach="doc.asignatura_ids" t-as="asignatura">
-                                    <li><t t-esc="asignatura.nombre_asignatura"/> (<t t-esc="asignatura.numero_horas"/> horas)</li>
-                                </t>
-                            </ul>
-                        </div>
-                    </t>
-                </t>
+        <!-- Plantilla QWeb para el informe -->
+        <template id="report_grupo_estudiantes_asignaturas">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <h2>Informe de Grupo</h2>
+                    <p><strong>Descripción del Grupo:</strong> <t t-esc="o.descripcion_grupo"/></p>
+                    <p><strong>Año Académico:</strong> <t t-esc="o.anno_academico"/></p>
+                    <p><strong>Módulo Profesional:</strong> <t t-esc="o.modulo_profesional"/></p>
+                    <p><strong>Curso:</strong> <t t-esc="o.curso"/></p>
+                    <h3>Estudiantes</h3>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Edad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.estudiante_ids" t-as="estudiante">
+                                <tr>
+                                    <td><t t-esc="estudiante.nombre"/></td>
+                                    <td><t t-esc="estudiante.apellidos"/></td>
+                                    <td><t t-esc="estudiante.edad"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <h3>Asignaturas</h3>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Número de Horas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.asignatura_ids" t-as="asignatura">
+                                <tr>
+                                    <td><t t-esc="asignatura.codigo"/></td>
+                                    <td><t t-esc="asignatura.nombre"/></td>
+                                    <td><t t-esc="asignatura.numero_horas"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
             </t>
         </template>
     </data>

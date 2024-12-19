@@ -10,7 +10,7 @@
                 <list string="Grupos">
                     <field name="descripcion_grupo"/>
                     <field name="modulo_profesional"/>
-                    <field name="anno_academico"/>
+                    <field name="anno_academico" required="1"/>
                     <field name="curso"/>
                     <field name="estudiante_ids"/>
                     <field name="asignatura_ids"/>
@@ -28,7 +28,7 @@
                         <group name="General Information">
                             <field name="descripcion_grupo" required="1"/>
                             <field name="modulo_profesional" required="1"/>
-                            <field name="anno_academico"/>
+                            <field name="anno_academico" required="1"/>
                             <field name="curso" required="1"/>
                             <field name="estudiante_ids"/>
                             <field name="asignatura_ids"/>
@@ -59,6 +59,5 @@
                 </kanban>
             </field>
         </record>
-
     </data>
 </odoo>
